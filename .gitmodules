@@ -1,3 +1,6 @@
 [submodule "external/etl"]
 	path = external/etl
 	url = https://github.com/nerdaxe/etl
+[submodule "external/spdlog"]
+	path = external/spdlog
+	url = https://github.com/nerdaxe/spdlog
