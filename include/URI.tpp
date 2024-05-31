@@ -1,12 +1,12 @@
 #ifndef URI_HPP
 #define URI_HPP
-#ifdef max
-	#undef max
-#endif 
 #include <cctype>
 #include <etl/to_arithmetic.h>
 #include <etl/string_view.h>
 #include <etl/string.h>
+#ifdef max
+	#undef max
+#endif 
 
 namespace libutils {
 
