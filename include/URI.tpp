@@ -2,7 +2,7 @@
 #define URI_HPP
 #ifdef max
 	#undef max
-#endif
+#endif 
 #include <cctype>
 #include <etl/to_arithmetic.h>
 #include <etl/string_view.h>
