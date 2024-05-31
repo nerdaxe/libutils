@@ -12,6 +12,7 @@ namespace libutils {
 
 	template<bool BUFFER_REFERENCE, uint8_t BUFSIZE = 128> class URI;
 	template<uint8_t BUFSIZE> class URI<true, BUFSIZE> {
+		static_assert(BUFSIZE == 128, "On URI reference must BUFSIZE be 128");
 		private:
 			enum ParseType : uint8_t {
 				SCHEME,
