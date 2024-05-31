@@ -165,6 +165,9 @@ namespace libutils {
 			inline uint16_t Port() const {
 				return mPort;
 			}
+			inline const etl::string_view& BufferSource() const {
+				return mBufferSource;
+			}
 		private:
 			etl::string_view mBufferSource;
 			etl::string_view mScheme;
@@ -184,6 +187,11 @@ namespace libutils {
 			URI() {}
 			URI<false, BUFSIZE>& operator=(const etl::string_view& source) {
 				mBuffer = source;
+				mURI = mBuffer;
+				return *this;
+			}
+			URI<false, BUFSIZE>& operator=(const URI<true>& source) {
+				mBuffer = source.BufferSource;
 				mURI = mBuffer;
 				return *this;
 			}
