@@ -24,6 +24,7 @@ namespace libutils {
 			URI(const URI<true, BUFSIZE>& copy) = delete;
 			URI(const char* url) : URI(etl::string_view(url,strlen(url))) {}
 			URI(const etl::string_view& url) { operator=(url); }
+			URI() : mValid(false) {}
 			URI<true,BUFSIZE> &operator=(const etl::string_view& url) {
 				mValid = false;
 				if (url.length() > etl::numeric_limits<uint16_t>::max()) return *this;
@@ -177,6 +178,7 @@ namespace libutils {
 			URI(const URI<false, BUFSIZE>& copy) = delete;
 			URI(const char* url) : URI(etl::string_view(url, strlen(url))) {}
 			URI(const etl::string_view& url_source) : mBuffer(url_source), mURI(mBuffer) {}	
+			URI() {}
 			URI<false, BUFSIZE>& operator=(const etl::string_view& source) {
 				mBuffer = source;
 				mURI = mBuffer;
