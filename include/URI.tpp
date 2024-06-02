@@ -11,7 +11,7 @@
 namespace libutils {
 
 	template<bool BUFFER_REFERENCE, uint8_t BUFSIZE = 128> class URI;
-	template<uint8_t BUFSIZE> class URI<true, BUFSIZE> {
+	template<uint16_t BUFSIZE> class URI<true, BUFSIZE> {
 		static_assert(BUFSIZE == 128, "On URI reference must BUFSIZE be 128");
 		private:
 			enum ParseType : uint8_t {
@@ -59,8 +59,7 @@ namespace libutils {
 							mUsername = etl::string_view(&url[start_position], i - start_position);
 							start_position = i + 1;
 							parse_type = ParseType::PASSWORD;
-						}
-						else if (url[i] == '@') {
+						} else if (url[i] == '@') {
 							mUsername = etl::string_view(&url[start_position], i - start_position);
 							start_position = i + 1;
 							parse_type = ParseType::URL;
@@ -179,7 +178,7 @@ namespace libutils {
 			uint16_t mPort;
 			bool mValid;
 	};
-	template<uint8_t BUFSIZE> class URI<false, BUFSIZE> {
+	template<uint16_t BUFSIZE> class URI<false, BUFSIZE> {
 		public:
 			URI(URI<false, BUFSIZE>&& move) = delete;
 			URI(const URI<false, BUFSIZE>& copy) = delete;
@@ -192,8 +191,9 @@ namespace libutils {
 				return *this;
 			}
 			URI<false, BUFSIZE>& operator=(const URI<true>& source) {
-				mBuffer = source.BufferSource;
-				mURI = mBuffer;
+				//mBuffer(source.BufferSource());
+				//mURI = mBuffer;
+				mURI = source.BufferSource();
 				return *this;
 			}
 			inline bool Valid() const {

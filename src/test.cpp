@@ -1,17 +1,11 @@
 #include <iostream>
-#include <spdlog/spdlog.h>
-#include <spdlog/fmt/ostr.h>
+#include "Utils.hpp"
 #include "URI.tpp"
+#include "Spdlog.hpp"
 
 
 using namespace libutils;
 
-std::ostream& operator<<(std::ostream& os, const etl::string_view& c)
-{
-	std::string str(c.data(), c.length());
-	return os << str;
-}
-template <> struct fmt::formatter<etl::string_view> : fmt::ostream_formatter {};
 
 int main(int argc, char* argv[]) {
 	spdlog::set_level(spdlog::level::debug);
@@ -79,6 +73,33 @@ int main(int argc, char* argv[]) {
 		SPDLOG_DEBUG("Valid: {}", url.Valid());
 	}
 
-
+	SPDLOG_DEBUG("Hexdecimal to Binary:");
+	{
+		uint8_t bin[2] = { 0,0 };
+		HexdecimalToBinary("fff0", strlen("fff0"), reinterpret_cast<uint8_t*>(&bin[0]), sizeof(bin));
+		if (bin[0] != 0xff && bin[1] != 0xf0) {
+			SPDLOG_ERROR("Error in HexdecimalToBinary f0 ff != {},{}", bin[0], bin[1]);
+			return 0;
+		}
+		SPDLOG_DEBUG("Result 1: {},{}", bin[0],bin[1]);
+		SPDLOG_DEBUG("Result 2: {},{}", strtoul("ff",nullptr,16), strtoul("f0", nullptr, 16));
+	}
+	{
+		uint8_t bin[2] = { 0,0 };
+		HexdecimalToBinary("f9f0", strlen("f9f0"), reinterpret_cast<uint8_t*>(&bin[0]), sizeof(bin));
+		if (bin[0] != 0xf9 && bin[1] != 0xf0) {
+			SPDLOG_ERROR("Error in HexdecimalToBinary 0xf9 0xf0 != {}, {}", bin[0], bin[1]);
+			return 0;
+		}
+		SPDLOG_DEBUG("Result 3: {}, {}", bin[0], bin[1]);
+		SPDLOG_DEBUG("Result 4: {}, {}", strtoul("f9", nullptr, 16), strtoul("f0", nullptr, 16));
+	}
+	{
+		uint8_t bin[2] = { 0xf9, 0xf0 };
+		char out[9];
+		BinaryToHexdecimal(reinterpret_cast<uint8_t*>(&out[0]), sizeof(out), reinterpret_cast<uint8_t*>(&bin), sizeof(bin));
+		SPDLOG_DEBUG("Result 3: {}", etl::string_view(out,4));
+		SPDLOG_DEBUG("Result 4: {:x},{:x}", bin[0], bin[1]);
+	}
 	return 0;
 }
