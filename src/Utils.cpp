@@ -101,6 +101,15 @@ namespace libutils {
 		return false;
 	}
 
+	bool HexdecimalToBinaryAppend(const char* str, uint16_t length, etl::ivector<uint8_t>& vec) {
+		if ((vec.max_size() - vec.size()) > length / 2) {
+			size_t current_size = vec.size();
+			vec.resize(vec.size() + (length / 2) + (length % 2));
+			return HexdecimalToBinary(str, length, reinterpret_cast<uint8_t*>(&vec[current_size]), static_cast<uint16_t>(vec.size() - current_size));
+		}
+		return false;
+	}
+
 
 	bool BinaryToHexdecimal(uint8_t* output, uint16_t length, const etl::ivector<uint8_t>& vec) {
 		return BinaryToHexdecimal(output, length, &vec[0], static_cast<uint16_t>(vec.size()));

@@ -17,7 +17,7 @@ namespace libutils {
 
 
 	bool HexdecimalToBinary(const char* str, uint16_t length, etl::ivector<uint8_t>& vec);
-
+	bool HexdecimalToBinaryAppend(const char* str, uint16_t length, etl::ivector<uint8_t>& vec);
 }
 
 #endif // !UTILS_HPP
