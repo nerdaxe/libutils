@@ -21,7 +21,7 @@ endif()
 include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/external/etl/include ${PROJECT_SOURCE_DIR}/external/spdlog/include)
 
 add_executable(libutils_test src/test.cpp "src/Utils.cpp")
-add_library(libutils src/test.cpp "src/Utils.cpp")
+add_library(libutils "src/Utils.cpp")
 
 set_property(TARGET libutils PROPERTY CXX_STANDARD 23)
 set_property(TARGET libutils_test PROPERTY CXX_STANDARD 23)
