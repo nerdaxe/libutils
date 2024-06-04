@@ -6,8 +6,8 @@
 
 namespace libutils {
 
-	bool ToLittleEndian(void* buffer, uint16_t length);
-	bool ToLittleEndian(const void* buffer, uint16_t length, void *output, uint16_t max_length);
+	bool SwapEndian(void* buffer, uint16_t length);
+	bool SwapEndian(const void* buffer, uint16_t length, void *output, uint16_t max_length);
 
 	bool HexdecimalToBinary(char *str, uint16_t length);
 	bool HexdecimalToBinary(const char* str, uint16_t length, uint8_t*output, uint16_t max_length);

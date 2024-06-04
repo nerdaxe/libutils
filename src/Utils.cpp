@@ -5,7 +5,7 @@
 
 namespace libutils {
 
-	bool ToLittleEndian(void* buffer, uint16_t length) {
+	bool SwapEndian(void* buffer, uint16_t length) {
 		if ((length % 4) == 0) {
 			uint32_t* ptr = reinterpret_cast<uint32_t*>(buffer);
 			const uint16_t len = length / 4;
@@ -24,7 +24,7 @@ namespace libutils {
 		return false;
 	}
 
-	bool ToLittleEndian(const void* buffer, uint16_t length, void* output, uint16_t max_length) {
+	bool SwapEndian(const void* buffer, uint16_t length, void* output, uint16_t max_length) {
 		if (max_length < length) return false;
 		if ((length % 4) == 0) {
 			const uint32_t* ptr = reinterpret_cast<const uint32_t*>(buffer);
@@ -129,5 +129,13 @@ namespace libutils {
 		output[current_out_position] = '\0';
 
 		return true;
+	}
+
+	void ReserveBytes(uint8_t* data, uint16_t length) {
+		for (uint16_t i = 0; i < length / 2; i++) {
+			uint8_t swap = data[i];
+			data[i] = data[length - 1 - i];
+			data[length - 1 - i] = swap;
+		}
 	}
 }
