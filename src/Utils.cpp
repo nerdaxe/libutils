@@ -1,4 +1,5 @@
 #include <spdlog/spdlog.h>
+#include <bit>
 #include <cstdint>
 #include <cctype>
 #include "Utils.hpp"
@@ -10,14 +11,14 @@ namespace libutils {
 			uint32_t* ptr = reinterpret_cast<uint32_t*>(buffer);
 			const uint16_t len = length / 4;
 			for (uint16_t i = 0; i < len; i++) {
-				ptr[i] = _byteswap_ulong(ptr[i]);
+				ptr[i] = std::byteswap(ptr[i]);
 			}
 			return true;
 		} else if ((length % 2) == 0) {
 			uint16_t* ptr = reinterpret_cast<uint16_t*>(buffer);
 			const uint16_t len = length / 2;
 			for (uint16_t i = 0; i < len; i++) {
-				ptr[i] = _byteswap_ushort(ptr[i]);
+				ptr[i] = std::byteswap(ptr[i]);
 			}
 			return true;
 		}
@@ -31,7 +32,7 @@ namespace libutils {
 			uint32_t* ptr_out = reinterpret_cast<uint32_t*>(output);
 			const uint16_t len = length / 4;
 			for (uint16_t i = 0; i < len; i++) {
-				ptr_out[i] = _byteswap_ulong(ptr[i]);
+				ptr_out[i] = std::byteswap(ptr[i]);
 			}
 			return true;
 		} else if ((length % 2) == 0) {
@@ -39,7 +40,7 @@ namespace libutils {
 			uint32_t* ptr_out = reinterpret_cast<uint32_t*>(output);
 			const uint16_t len = length / 2;
 			for (uint16_t i = 0; i < len; i++) {
-				ptr_out[i] = _byteswap_ushort(ptr[i]);
+				ptr_out[i] = std::byteswap(ptr[i]);
 			}
 			return true;
 		}
