@@ -1,9 +1,10 @@
-if(IDF_TARGET)
+if(ESP_PLATFORM)
 
 idf_component_register(SRCS "src/Utils.cpp" 
-                       PRIV_INCLUDE_DIRS include external/etl/include/ external/spdlog/include 
+                       PRIV_INCLUDE_DIRS include external/etl/include external/spdlog/include 
                        REQUIRES mbedtls)
-
+                       
+target_compile_options(${COMPONENT_LIB} PRIVATE -std=gnu++23)
 
 else()
     cmake_minimum_required(VERSION 3.11-3.18)

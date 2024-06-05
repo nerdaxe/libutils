@@ -77,7 +77,6 @@ namespace libutils {
 
 	bool HexdecimalToBinary(const char* str, uint16_t length, uint8_t* output, uint16_t max_length) {
 		if ((length / 2) > max_length) return false;
-		bool add = false;
 		uint16_t output_offset = 0;
 		for (uint16_t i = 0; i < length; i += 2) {
 			if (str[i] >= '0' && str[i] <= '9')  output[output_offset] = (str[i] - '0') << 4;
