@@ -1,5 +1,5 @@
-#ifndef URI_HPP
-#define URI_HPP
+#ifndef URI_TPP
+#define URI_TPP
 #include <cctype>
 #include <etl/to_arithmetic.h>
 #include <etl/string_view.h>
@@ -10,7 +10,7 @@
 
 namespace libutils {
 
-	template<bool BUFFER_REFERENCE, uint8_t BUFSIZE = 128> class URI;
+	template<bool BUFFER_REFERENCE, uint16_t BUFSIZE = 128> class URI;
 	template<uint16_t BUFSIZE> class URI<true, BUFSIZE> {
 		static_assert(BUFSIZE == 128, "On URI reference must BUFSIZE be 128");
 		private:
@@ -178,7 +178,7 @@ namespace libutils {
 			uint16_t mPort;
 			bool mValid;
 	};
-	template<uint16_t BUFSIZE> class URI<false, BUFSIZE> {
+	template<bool BUFFER_REFERENCE, uint16_t BUFSIZE> class URI {
 		public:
 			URI(URI<false, BUFSIZE>&& move) = delete;
 			URI(const URI<false, BUFSIZE>& copy) = delete;
