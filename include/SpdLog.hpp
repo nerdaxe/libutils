@@ -6,7 +6,7 @@
 
 static std::ostream& operator<<(std::ostream& os, const etl::string_view& c)
 {
-	std::string str(c.data(), c.length());
+	std::string_view str(c.data(), c.length());
 	return os << str;
 }
 
