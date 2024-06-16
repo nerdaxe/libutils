@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Utils.hpp"
-#include "URI.tpp"
+#include "URI.hpp"
 #include "Spdlog.hpp"
 
 
@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
 	SPDLOG_DEBUG("TEST URI:");
 	{
-		URI<false> url("stratum+tcp://127.0.0.1:3333");
+		URI url("stratum+tcp://127.0.0.1:3333");
 
 		SPDLOG_DEBUG("URI:");
 		SPDLOG_DEBUG("Scheme: {}", url.Scheme());
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 		SPDLOG_DEBUG("Valid: {}", url.Valid());
 	}
 	{
-		URI<false> url("stratum+tcp://username:password@127.0.0.1:3333");
+		URI url("stratum+tcp://username:password@127.0.0.1:3333");
 
 		SPDLOG_DEBUG("URI:");
 		SPDLOG_DEBUG("Scheme: {}", url.Scheme());
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
 		SPDLOG_DEBUG("Valid: {}", url.Valid());
 	}
 	{
-		URI<false> url("stratum+tcp://username:password@127.0.0.1:3333/path");
+		URI url("stratum+tcp://username:password@127.0.0.1:3333/path");
 
 		SPDLOG_DEBUG("URI:");
 		SPDLOG_DEBUG("Scheme: {}", url.Scheme());
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 		SPDLOG_DEBUG("Valid: {}", url.Valid());
 	} 
 	{
-		URI<false> url("stratum+tcp://username:password@127.0.0.1/path");
+		URI url("stratum+tcp://username:password@127.0.0.1/path");
 
 		SPDLOG_DEBUG("URI:");
 		SPDLOG_DEBUG("Scheme: {}", url.Scheme());
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
 		SPDLOG_DEBUG("Valid: {}", url.Valid());
 	}
 	{
-		URI<false> url("stratum+tcp://127.0.0.1/path");
+		URI url("stratum+tcp://127.0.0.1/path");
 
 		SPDLOG_DEBUG("URI:");
 		SPDLOG_DEBUG("Scheme: {}", url.Scheme());
