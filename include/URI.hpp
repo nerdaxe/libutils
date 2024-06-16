@@ -27,9 +27,10 @@ namespace libutils {
 		public:
 			URIView(URIView&& move) = delete;
 			URIView(const URIView& copy) = delete;
-			URIView(const char* url) : URI(etl::string_view(url,strlen(url))) {}
+			URIView(const char* url) : URIView(etl::string_view(url,strlen(url))) {}
 			URIView(const etl::string_view& url) { operator=(url); }
 			URIView() : mValid(false) {}
+			URIView& operator=(const etl::string_view& url);
 			
 			inline bool Valid() const {
 				return mValid;
