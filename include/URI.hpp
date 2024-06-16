@@ -1,5 +1,5 @@
-#ifndef URI_TPP
-#define URI_TPP
+#ifndef URI_HPP
+#define URI_HPP
 #include <cctype>
 #include <etl/to_arithmetic.h>
 #include <etl/string_view.h>
@@ -30,8 +30,7 @@ namespace libutils {
 			URIView(const char* url) : URIView(etl::string_view(url,strlen(url))) {}
 			URIView(const etl::string_view& url) { operator=(url); }
 			URIView() : mValid(false) {}
-			URIView& operator=(const etl::string_view& url);
-			
+			URIView& operator=(const etl::string_view& url);			
 			inline bool Valid() const {
 				return mValid;
 			}
