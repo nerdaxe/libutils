@@ -74,7 +74,7 @@ namespace libutils {
 			URI(const etl::string_view& url_source) : mBuffer(url_source), mURI(mBuffer) {}	
 			URI() {}
 			URI& operator=(const etl::string_view& source) {
-				mBuffer = source;
+				mBuffer = etl::string<LIBUTILS_URI_MAX_BUFFER>(source);
 				mURI = mBuffer;
 				return *this;
 			}
@@ -107,7 +107,7 @@ namespace libutils {
 			}
 		private:
 			etl::string<LIBUTILS_URI_MAX_BUFFER> mBuffer;
-			URI<true> mURI;
+			URIView mURI;
 	};
 }
 
