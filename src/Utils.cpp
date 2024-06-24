@@ -57,7 +57,7 @@ namespace libutils {
 					str[output_offset++] |= ((str[i] - '0') & 0xF) << 4u;
 					shift = false;
 				} else {
-					str[output_offset] |= str[i] & 0xF;
+					str[output_offset++] |= str[i] & 0xF;
 					shift = true;
 				}
 			}
@@ -66,7 +66,7 @@ namespace libutils {
 					str[output_offset++] |= ((std::tolower(str[i]) - 'a') & 0xF) << 4u;
 					shift = false;
 				} else {
-					str[output_offset] |= std::tolower(str[i]) & 0xF;
+					str[output_offset++] |= std::tolower(str[i]) & 0xF;
 					shift = true;
 				}
 			}
@@ -79,9 +79,9 @@ namespace libutils {
 		if ((length / 2) > max_length) return false;
 		uint16_t output_offset = 0;
 		for (uint16_t i = 0; i < length; i += 2) {
-			if (str[i] >= '0' && str[i] <= '9')  output[output_offset] = (str[i] - '0') << 4;
-			else if (str[i] >= 'a' && str[i] <= 'f') output[output_offset] = ((str[i] - 'a') + 10)  << 4;
-			else if (str[i] >= 'A' && str[i] <= 'F') output[output_offset] = ((str[i] - 'A') + 10) << 4;
+			if (str[i] >= '0' && str[i] <= '9')  output[output_offset++] = (str[i] - '0') << 4;
+			else if (str[i] >= 'a' && str[i] <= 'f') output[output_offset++] = ((str[i] - 'a') + 10)  << 4;
+			else if (str[i] >= 'A' && str[i] <= 'F') output[output_offset++] = ((str[i] - 'A') + 10) << 4;
 			else return false;
 
 			if (str[i+1] >= '0' && str[i+1] <= '9') output[output_offset++] |= (str[i+1] - '0');
