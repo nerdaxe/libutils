@@ -121,12 +121,12 @@ namespace libutils {
 	}
 
 
-	bool BinaryToHexdecimal(uint8_t* output, uint16_t length, const etl::ivector<uint8_t>& vec) {
+	uint16_t BinaryToHexdecimal(uint8_t* output, uint16_t length, const etl::ivector<uint8_t>& vec) {
 		return BinaryToHexdecimal(output, length, &vec[0], static_cast<uint16_t>(vec.size()));
 	}
 
-	bool BinaryToHexdecimal(uint8_t* output, uint16_t length, const uint8_t* input, uint16_t input_length) {
-		if (length < (input_length * 2) + 1) return false;
+	uint16_t BinaryToHexdecimal(uint8_t* output, uint16_t length, const uint8_t* input, uint16_t input_length) {
+		if (length < (input_length * 2) + 1) return 0;
 
 		uint16_t current_out_position = 0;
 
@@ -138,7 +138,7 @@ namespace libutils {
 		}
 		output[current_out_position] = '\0';
 
-		return true;
+		return current_out_position;
 	}
 
 	void ReserveBytes(uint8_t* data, uint16_t length) {
