@@ -132,7 +132,7 @@ namespace libutils {
 
 		static const char hex_table[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 		
-		for (int32_t i = 0; i < input_length; i++) {
+		for (int32_t i = input_length - 1; i >= 0; i--) {
 			output[current_out_position++] = hex_table[(input[i] >> 4u) & 0xF]; 
 			output[current_out_position++] = hex_table[input[i] & 0xF];
 		}
